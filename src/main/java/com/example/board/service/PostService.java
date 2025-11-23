@@ -33,14 +33,13 @@ public class PostService {
                 .orElseThrow(() -> new IllegalArgumentException("게시글을 찾을 수 없습니다."));
     }
 
-    public Post edit(Long id, String title, String content, Member editor) {
+    public void edit(Long id, String title, String content, Member editor) {
         Post post = get(id);
         if (!post.getAuthor().getId().equals(editor.getId())) {
             throw new SecurityException("본인 게시글만 수정할 수 있습니다.");
         }
         post.setTitle(title);
         post.setContent(content);
-        return post;
     }
 
     public void delete(Long id, Member requester) {

@@ -26,10 +26,10 @@ public class CommentService {
         return commentRepository.findByPostOrderByCreatedAtAsc(post);
     }
 
-    public Comment write(Long postId, String content, Member author) {
+    public void write(Long postId, String content, Member author) {
         Post post = postService.get(postId);
         Comment comment = new Comment(content, author, post);
-        return commentRepository.save(comment);
+        commentRepository.save(comment);
     }
 
     public void delete(Long commentId, Member requester) {
