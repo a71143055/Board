@@ -23,9 +23,9 @@ public class MemberService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Member register(String username, String rawPassword, String email) {
+    public void register(String username, String rawPassword, String email) {
         Member m = new Member(username, passwordEncoder.encode(rawPassword), email, Role.ROLE_USER);
-        return memberRepository.save(m);
+        memberRepository.save(m);
     }
 
     @Override
