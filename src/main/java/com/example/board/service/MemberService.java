@@ -23,7 +23,7 @@ public class MemberService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
-    public Member register(String username, String rawPassword, String email) {
+    public void register(String username, String rawPassword, String email) {
         if (memberRepository.existsByUsername(username)) {
             throw new IllegalArgumentException("이미 존재하는 사용자명입니다.");
         }
@@ -31,7 +31,7 @@ public class MemberService implements UserDetailsService {
             throw new IllegalArgumentException("이미 등록된 이메일입니다.");
         }
         Member m = new Member(username, passwordEncoder.encode(rawPassword), email, Role.ROLE_USER);
-        return memberRepository.save(m);
+        memberRepository.save(m);
     }
 
     public Member findByUsername(String username) {
