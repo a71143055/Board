@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<head>
+    <title th:fragment="title">Board - 홈</title>
+</head>
+<body>
+<section>
+    <h1>게시글 목록</h1>
+    <div th:if="${posts.content.size() == 0}">
+        게시글이 없습니다.
+    </div>
+    <ul class="post-list" th:if="${posts.content.size() > 0}">
+        <li th:each="post : ${posts.content}">
+            <a th:href="@{|/posts/${post.id}|}" th:text="${post.title}">제목</a>
+            <div class="meta">
+                <span th:text="${post.author.username}">작성자</span> ·
+                <span th:text="${#temporals.format(post.createdAt, 'yyyy-MM-dd HH:mm')}">작성일</span>
+            </div>
+        </li>
+    </ul>
+    <div class="pagination">
+        <a th:if="${currentPage > 0}" th:href="@{|/?page=${currentPage - 1}|}">이전</a>
+        <span>페이지 [[${currentPage + 1}]]</span>
+        <a th:if="${posts.totalPages > currentPage + 1}" th:href="@{|/?page=${currentPage + 1}|}">다음</a>
+    </div>
+</section>
+</body>
+</html>

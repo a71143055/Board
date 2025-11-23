@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<head>
+    <title th:fragment="title">Board - 수정</title>
+</head>
+<body>
+<section>
+    <h1>게시글 수정</h1>
+    <form method="post" th:action="@{|/posts/${post.id}/edit|}">
+        <label>제목
+            <input type="text" name="title" th:value="${post.title}" maxlength="200" required>
+        </label>
+        <label>내용
+            <textarea name="content" rows="10" th:text="${post.content}" required></textarea>
+        </label>
+        <button type="submit">저장</button>
+    </form>
+</section>
+</body>
+</html>

@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<head>
+    <title th:fragment="title">Board - 회원가입</title>
+</head>
+<body>
+<section class="auth">
+    <h1>회원가입</h1>
+    <div class="error" th:if="${error}" th:text="${error}"></div>
+    <form method="post" th:action="@{/register}">
+        <label>아이디
+            <input type="text" name="username" minlength="3" maxlength="30" required>
+        </label>
+        <label>이메일
+            <input type="email" name="email" required>
+        </label>
+        <label>비밀번호
+            <input type="password" name="password" minlength="8" required>
+        </label>
+        <button type="submit">가입하기</button>
+    </form>
+</section>
+</body>
+</html>

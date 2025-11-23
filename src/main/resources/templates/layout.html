@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title th:replace="${title} :: title">Board</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<header class="header">
+    <div class="container">
+        <a href="/" class="brand">Board</a>
+        <nav class="nav">
+            <a href="/" class="nav-link">게시판</a>
+            <span th:if="${#authorization.expression('isAuthenticated()')}" class="nav-right">
+                <span th:text="${#authentication.name}">user</span>
+                <a th:href="@{/posts/write}" class="nav-link">글쓰기</a>
+                <a th:href="@{/logout}" class="nav-link">로그아웃</a>
+            </span>
+            <span th:if="${#authorization.expression('!isAuthenticated()')}" class="nav-right">
+                <a th:href="@{/login}" class="nav-link">로그인</a>
+                <a th:href="@{/register}" class="nav-link">회원가입</a>
+            </span>
+        </nav>
+    </div>
+</header>
+<main class="container" th:fragment="content">
+    <!-- content -->
+</main>
+<footer class="footer">
+    <div class="container">
+        <small>&copy; 2025 Board</small>
+    </div>
+</footer>
+</body>
+</html>

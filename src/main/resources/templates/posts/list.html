@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org" th:replace="layout :: content">
+<head>
+    <title th:fragment="title">Board - 게시글 목록</title>
+</head>
+<body>
+<section>
+    <h1>게시글 목록</h1>
+    <ul class="post-list" th:if="${posts}">
+        <li th:each="post : ${posts.content}">
+            <a th:href="@{|/posts/${post.id}|}" th:text="${post.title}"></a>
+        </li>
+    </ul>
+</section>
+</body>
+</html>
